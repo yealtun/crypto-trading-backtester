@@ -16,15 +16,22 @@ This folder contains the necessary code to pull cryptocurrency data using the Bi
 
 ## backtesting.py
 
-This file contains the necessary codes to perform backtesting on the extracted data. In the `backtesting.py` file, users can define strategies and set backtest settings.
+`backtesting.py` now ships with a concise CLI and clearer reporting for the included Parabolic SAR strategy.
 
 ### Usage
 
-1. In `backtesting.py`, define your strategy between #strategy start and #strategy end.
-2. In `backtesting.py`, replace the variable `csvName` with the name of the data file you extracted.
-3. In `backtesting.py`, set your `leverage`, `stop_loss`, `take_profit` backtest settings according to your strategy.
-4. Run it: `backtesting.py`
-5. The project currently includes the parabolic SAR strategy. If you want to test it against the spot market, you can disable the short trading code in the `backtesting.py` file and set the leverage to 0.
+1. Run the backtester by pointing it at the CSV you downloaded:
+   ```bash
+   python backtesting.py --csv ETHUSDT-2023-2024-15m.csv
+   ```
+2. Optional flags help you tune the simulation without editing code:
+   - `--leverage`: leverage multiplier (use `0` for spot).
+   - `--initial-capital`: starting balance (default: `100`).
+   - `--stop-loss`: stop-loss percentage (default: `0.5`).
+   - `--take-profit`: take-profit percentage (default: `0.25`).
+   - `--timezone`: timezone used when printing trade timestamps (default: `Europe/Istanbul`).
+3. Review the summary printed after execution for capital trajectory, trade breakdown, and win rate.
+4. The project currently includes the Parabolic SAR strategy. If you want to test it against the spot market, run with `--leverage 0` and consider disabling shorts before extending the strategy logic.
 
 ## Results
 
